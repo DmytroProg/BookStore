@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore", "BookStore\BookStore.csproj", "{DD1D65E2-5207-4EF5-9B30-77E24BABFC3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{F6B716BD-9562-4538-A9BD-C096DA1773AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD1D65E2-5207-4EF5-9B30-77E24BABFC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1D65E2-5207-4EF5-9B30-77E24BABFC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1D65E2-5207-4EF5-9B30-77E24BABFC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1D65E2-5207-4EF5-9B30-77E24BABFC3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B716BD-9562-4538-A9BD-C096DA1773AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B716BD-9562-4538-A9BD-C096DA1773AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B716BD-9562-4538-A9BD-C096DA1773AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B716BD-9562-4538-A9BD-C096DA1773AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DFC4CEC-1CEC-499D-BFE4-C6F56996B860}
+	EndGlobalSection
+EndGlobal

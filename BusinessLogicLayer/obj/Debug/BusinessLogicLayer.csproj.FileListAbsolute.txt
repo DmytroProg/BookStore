@@ -1,0 +1,6 @@
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.AssemblyReference.cache
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+E:\IT STEP\ADO.NET\ExamProject\BookStore\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
