@@ -1,0 +1,11 @@
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll

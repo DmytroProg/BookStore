@@ -1,0 +1,15 @@
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\bin\Debug\net6.0\BusinessLogicLayer.deps.json
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\bin\Debug\net6.0\BusinessLogicLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\bin\Debug\net6.0\BusinessLogicLayer.pdb
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\bin\Debug\net6.0\DataAccessLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.csproj.AssemblyReference.cache
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.AssemblyInfoInputs.cache
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.AssemblyInfo.cs
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.csproj.CopyComplete
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\refint\BusinessLogicLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\BusinessLogicLayer.pdb
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BusinessLogicLayer\obj\Debug\net6.0\ref\BusinessLogicLayer.dll

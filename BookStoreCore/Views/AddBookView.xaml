@@ -1,0 +1,229 @@
+﻿<UserControl x:Class="BookStoreCore.Views.AddBookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStoreCore"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="Header" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="0, 20, 0, 5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock TextAlignment="Left"
+                           Margin="10, 5"
+                           FontSize="18">
+                    <Hyperlink Command="{Binding GoBackToAdminMain}"
+                               Foreground="Gray"
+                               TextDecorations="None">
+                        Go back
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource Header}">Add new book</TextBlock>
+
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=titleTextBox}">Title</Label>
+                        <TextBox Grid.Row="1" x:Name="titleTextBox" 
+                                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                        Target="{Binding ElementName=authorTextBox}">Author</Label>
+                        <ComboBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Authors}" 
+                        x:Name="authorTextBox" IsTextSearchEnabled="True" IsEditable="True" TextSearch.TextPath="LastName"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" MaxDropDownHeight="200"
+                        SelectedItem="{Binding Author, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                        <Button Grid.Column="1" Grid.Row="1"
+                            x:Name="addAuthorBtn">+ New Author</Button>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=publisherTextBox}">Publisher</Label>
+                        <TextBox Grid.Row="1" x:Name="publisherTextBox"
+                                 Text="{Binding Publisher}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=countTextBox}">Count of pages</Label>
+                        <TextBox Grid.Row="1" x:Name="countTextBox"
+                                 Text="{Binding PageCount}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0">Genres</Label>
+                        <Button Grid.Row="0" Grid.Column="1" Margin="10, 20, 0, 5"
+                                Click="Button_Click">add genre</Button>
+                        <Popup x:Name="genrePopup"
+                               Placement="Right"
+                               StaysOpen="False"
+                               PopupAnimation="Scroll">
+                            <ListBox x:Name="genreList" ItemsSource="{Binding Genres}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Content="{Binding GenreName}" 
+                                                  IsChecked="{Binding IsSelected}"
+                                                  Checked="CheckBox_Checked"
+                                                  Unchecked="CheckBox_Checked"></CheckBox>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Popup>
+                        <WrapPanel Grid.Row="1" Grid.ColumnSpan="2" 
+                                   x:Name="genresWrapPanel" Margin="0, 10, 0, 0">
+
+                        </WrapPanel>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=yearTextBox}">Publish year</Label>
+                        <TextBox Grid.Row="1" x:Name="yearTextBox"
+                                 Text="{Binding PublishYear}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=valueTextBox}">Value</Label>
+                        <TextBox Grid.Row="1" x:Name="valueTextBox" Margin="0, 10, 10, 10"
+                                 Text="{Binding Value}"></TextBox>
+
+                        <Label Grid.Row="0" Grid.Column="1" Target="{Binding ElementName=priceTextBox}">Price</Label>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="priceTextBox" Margin="0, 10, 10, 10"
+                                 Text="{Binding Price}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Target="{Binding ElementName=partTextBox}">Part (optional)</Label>
+                        <TextBox Grid.Row="1" x:Name="partTextBox"
+                                 Text="{Binding Part}"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0">Image</Label>
+                        <TextBox Grid.Row="1" x:Name="imageTextBox"
+                                 Text="{Binding ImagePath}"></TextBox>
+                    </Grid>
+
+                    <Button x:Name="createBtn" Margin="80, 30"
+                            Height="40">
+                        Add book</Button>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+
+            <Viewbox Grid.Row="0">
+                <Grid>
+                    <Image Source="/Images/bookcover.png"></Image>
+                    <Rectangle Margin="40, 40, 100, 55"
+                               x:Name="imageRect">
+                        <Rectangle.RenderTransform>
+                            <SkewTransform AngleY="7"></SkewTransform>
+                        </Rectangle.RenderTransform>
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged}"></ImageBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </Viewbox>
+
+
+            <TextBlock x:Name="titleViewText" Grid.Row="1"
+                       Text="{Binding Title}"></TextBlock>
+            <TextBlock x:Name="authorViewText" Grid.Row="2" 
+                       Text="{Binding Author}" FontSize="20"></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>
