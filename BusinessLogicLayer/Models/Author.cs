@@ -12,10 +12,5 @@ namespace BusinessLogicLayer.Models
         public string Name { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public int BornYear { get; set; }
-
-        public override string ToString()
-        {
-            return $"{this.Name} {this.LastName}";
-        }
     }
 }
