@@ -1,5 +1,7 @@
-﻿using BookStoreCore.Stores;
+﻿using BookStoreCore.Services;
+using BookStoreCore.Stores;
 using BookStoreCore.ViewModels;
+using BusinessLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,18 +15,28 @@ namespace BookStoreCore
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    
+    /*
+    TODO
+    - Custom password box
+    - Add author popup
+     */
+
     public partial class App : Application
     {
         private NavigationStore _navigationStore;
+        private List<BookDetails> _bookDetails;
+        private User _user;
 
         public App()
         {
             this._navigationStore = new NavigationStore();
+            _bookDetails = new List<BookDetails>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrectViewModel = new AdminMainViewModel(this._navigationStore, CreateBookViewModel);
+            _navigationStore.CurrectViewModel = CreateUserLoginViewModel();
 
             MainWindow = new MainWindow()
             {
@@ -37,12 +49,17 @@ namespace BookStoreCore
 
         private BookViewModel CreateBookViewModel()
         {
-            return new BookViewModel(this._navigationStore, AdminMainViewModel);
+            return new BookViewModel(_bookDetails, new NavigationService(this._navigationStore, CreateAdminMainViewModel));
         }
 
-        private AdminMainViewModel AdminMainViewModel()
+        private AdminMainViewModel CreateAdminMainViewModel()
         {
-            return new AdminMainViewModel(this._navigationStore, CreateBookViewModel);
+            return new AdminMainViewModel(_bookDetails, this._navigationStore);
+        }
+
+        private UserLoginViewModel CreateUserLoginViewModel()
+        {
+            return new UserLoginViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
         }
     }
 }

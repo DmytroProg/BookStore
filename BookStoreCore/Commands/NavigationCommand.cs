@@ -1,4 +1,5 @@
-﻿using BookStoreCore.Stores;
+﻿using BookStoreCore.Services;
+using BookStoreCore.Stores;
 using BookStoreCore.ViewModels;
 using BusinessLogicLayer.Models;
 using System;
@@ -13,23 +14,20 @@ namespace BookStoreCore.Commands
 {
     public class NavigationCommand : ICommand
     {
-        private readonly NavigationStore _navigationStore;
-        private Func<ViewModelBase> _createViewModel;
-
+        private readonly NavigationService _navigationService;
 
         public event EventHandler CanExecuteChanged;
 
-        public NavigationCommand(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
+        public NavigationCommand(NavigationService navigationService)
         {
-            this._navigationStore = navigationStore;
-            this._createViewModel = createViewModel;
+            this._navigationService = navigationService;
         }
 
         public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
-            this._navigationStore.CurrectViewModel = _createViewModel();
+            this._navigationService.Navigate();
         }
     }
 }

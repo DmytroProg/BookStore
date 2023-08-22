@@ -8,7 +8,7 @@ namespace BusinessLogicLayer.Models
 {
     public class Genre
     {
-        public string GenreName { get; set; }
+        public string GenreName { get; set; } = null!;
         public bool IsSelected { get; set; }
     }
 }

@@ -75,7 +75,8 @@
                         <ComboBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Authors}" 
                         x:Name="authorTextBox" IsTextSearchEnabled="True" IsEditable="True" TextSearch.TextPath="LastName"
                         ScrollViewer.VerticalScrollBarVisibility="Auto" MaxDropDownHeight="200"
-                        SelectedItem="{Binding Author, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                        SelectedItem="{Binding Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        IsSynchronizedWithCurrentItem="True"></ComboBox>
                         <Button Grid.Column="1" Grid.Row="1"
                             x:Name="addAuthorBtn">+ New Author</Button>
                     </Grid>
@@ -189,7 +190,7 @@
                     </Grid>
 
                     <Button x:Name="createBtn" Margin="80, 30"
-                            Height="40">
+                            Height="40" Command="{Binding CreateBook}">
                         Add book</Button>
                 </StackPanel>
 

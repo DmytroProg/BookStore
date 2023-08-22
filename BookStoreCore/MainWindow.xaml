@@ -7,7 +7,9 @@
         xmlns:views="clr-namespace:BookStoreCore.Views"
         xmlns:vms="clr-namespace:BookStoreCore.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800"
+        WindowStartupLocation="CenterOwner"
+        MinHeight="500" MinWidth="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="20"/>
@@ -53,6 +55,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:BookViewModel}">
                 <views:AddBookView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:UserLoginViewModel}">
+                <views:UserLoginView/>
             </DataTemplate>
         </Grid.Resources>
 

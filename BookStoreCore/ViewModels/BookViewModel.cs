@@ -1,26 +1,28 @@
-﻿using BookStoreCore.Views;
-using BusinessLogicLayer.Models;
+﻿using BusinessLogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessLogicLayer.Models;
 using BookStoreCore.Stores;
 using System.Windows.Input;
 using BookStoreCore.Commands;
-using BookStoreCore.ViewModels;
+using BookStoreCore.Services;
+using GalaSoft.MvvmLight.Command;
+using System.CodeDom;
+using System.Windows;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace BookStoreCore.ViewModels
 {
     public class BookViewModel : ViewModelBase
     {
+        private int _id;
         private string _title;
-        private string _author;
+        private Author _author;
         private string _imagePath;
         private string _publisher;
         private int _pageCount;
-        private List<string> _genre;
         private int _publishYear;
         private decimal _value;
         private decimal _price;
@@ -36,7 +38,7 @@ namespace BookStoreCore.ViewModels
                 OnPropertyChanged(nameof(this.Title));
             }
         }
-        public string Author
+        public Author Author
         {
             get => _author;
             set
@@ -50,7 +52,7 @@ namespace BookStoreCore.ViewModels
             get => _publisher;
             set
             {
-                _title = _publisher;
+                _publisher = value;
                 OnPropertyChanged(nameof(this.Publisher));
             }
         }
@@ -114,9 +116,44 @@ namespace BookStoreCore.ViewModels
 
         public ICommand GoBackToAdminMain { get; }
 
-        public BookViewModel(NavigationStore navigationStore, Func<AdminMainViewModel> createAdminMainViewModel)
+        public ICommand CreateBook
         {
-            GoBackToAdminMain = new NavigationCommand(navigationStore, createAdminMainViewModel);
+            get => new RelayCommand(() => {
+                if (!TryShowErrorMessage())
+                {
+                    return;
+                }
+                var book = new Book() {
+                    Name = this.Title,
+                    Author = new Author() { Name = this.Author.Name,
+                        LastName = this.Author.LastName },
+                    Genres = new List<string>(this.Genres.Select(x => x.GenreName)),
+                    PageCount = this.PageCount,
+                    Price = this.Price,
+                    PublishYear = this.PublishYear,
+                    Publisher = this.Publisher,
+                    Value = this.Value,
+                    Part = this.Part,
+                    Image = this.ImagePath
+                };
+                _bookDetails.Add(new BookDetails()
+                    {
+                        Book = book,
+                        Count = 0,
+                        IsAvailable = false
+                    });
+                GoBackToAdminMain?.Execute(null);
+                });
+        }
+
+        private List<BookDetails> _bookDetails;
+
+        public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService)
+        {
+            this._id = -1;
+
+            GoBackToAdminMain = new NavigationCommand(navigationService);
+            this._bookDetails = bookDetails;
 
             // Test
             this.Authors = new List<Author>() {
@@ -138,6 +175,70 @@ namespace BookStoreCore.ViewModels
                 new Genre() { GenreName = "Novel", IsSelected = false }
             };
             //////////////////////
+        }
+
+        public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService, 
+            Book book) : this(bookDetails, navigationService)
+        {
+            this._id = book.Id;
+            this.Title = book.Name;
+            this.Publisher = book.Publisher;
+            this.PublishYear = book.PublishYear;
+            this.Author = book.Author;
+            this.Value = book.Value;
+            this.Price = book.Price;
+            this.Part = book.Part;
+            this.ImagePath = book.Image;
+
+            this.Genres.Where(x => book.Genres.Contains(x.GenreName))
+                .ToList()
+                .ForEach(x => x.IsSelected = true);
+
+        }
+
+        private bool TryShowErrorMessage()
+        {
+            try
+            {
+                Validate();
+                return true;
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show($"{ex.Message} is incorrect", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"The input is incorrect. Please meke sure every required column is filled correctly ",
+                    "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+        }
+
+        public void Validate()
+        {
+            if (string.IsNullOrEmpty(this.Title) || string.IsNullOrWhiteSpace(this.Title))
+                throw new ArgumentException(nameof(this.Title));
+            if (string.IsNullOrEmpty(this.Publisher) || string.IsNullOrWhiteSpace(this.Publisher))
+                throw new ArgumentException(nameof(this.Publisher));
+            if(this.PageCount <= 0)
+                throw new ArgumentException("Page count");
+            if (this.Value <= 0)
+                throw new ArgumentException(nameof(this.Value));
+            if (this.Price <= 0)
+                throw new ArgumentException(nameof(this.Price));
+            if (this.Part.HasValue && this.Part <= 0)
+                throw new ArgumentException(nameof(Part));
+            if (this.PublishYear <= 0)
+                throw new ArgumentException("Publish year");
+            if (Author is null || this.Authors.Find(x => x.Name == this.Author.Name && x.LastName ==
+                this.Author.LastName) is null)
+                throw new ArgumentException(nameof(this.Author));
+            if (string.IsNullOrEmpty(this.ImagePath) || string.IsNullOrWhiteSpace(this.ImagePath))
+                throw new ArgumentException("Image path");
+            if(this.Genres.Count(x => x.IsSelected) == 0)
+                throw new ArgumentException(nameof(Genre));
         }
     }
 }
