@@ -1,5 +1,7 @@
-﻿using DataAccessLayer.Interfaces;
+﻿using DataAccessLayer.DataContext;
+using DataAccessLayer.Interfaces;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,13 @@ namespace DataAccessLayer.Repository
 {
     public class BookDetailsRepository : IRepository<BookDetailsInfo>
     {
+        private BookDetailsContext _bookDetailsContext = null!;
 
+        public BookDetailsRepository(string connectionString)
+        {
+            var dbContextOptionsBuilder = new DbContextOptionsBuilder().UseSqlServer(connectionString);
+            this._bookDetailsContext = new BookDetailsContext(dbContextOptionsBuilder.Options);
+        }
 
         public void Add(BookDetailsInfo value)
         {

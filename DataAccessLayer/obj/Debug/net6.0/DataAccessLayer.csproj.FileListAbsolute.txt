@@ -9,3 +9,4 @@ E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache

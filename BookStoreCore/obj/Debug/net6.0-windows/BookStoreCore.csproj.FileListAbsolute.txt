@@ -47,3 +47,13 @@ E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\runtimes\win7-x86\native\libuv.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\UserLoginView.g.cs
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\UserLoginView.baml
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll

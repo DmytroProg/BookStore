@@ -61,8 +61,8 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Target="{Binding ElementName=passwordTextBox}">Your password</Label>
-                    <PasswordBox Grid.Row="1" x:Name="passwordTextBox"
-                        ></PasswordBox>
+                    <TextBox Grid.Row="1" x:Name="passwordTextBox"
+                        Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </Grid>
             </StackPanel>
         </DockPanel>
