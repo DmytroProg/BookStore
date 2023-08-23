@@ -12,12 +12,12 @@ namespace DataAccessLayer.Repository
 {
     public class UserRepository : IRepository<UserInfo>
     {
-        private UserContext _userContext = null!;
+        private BookStoreContext _userContext = null!;
 
         public UserRepository(string connectionString)
         {
             var optionsBuilder = new DbContextOptionsBuilder().UseSqlServer(connectionString);
-            this._userContext = new UserContext(optionsBuilder.Options);
+            this._userContext = new BookStoreContext(optionsBuilder.Options);
         }
 
         public void Add(UserInfo value)

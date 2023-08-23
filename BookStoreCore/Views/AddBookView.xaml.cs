@@ -30,7 +30,7 @@ namespace BookStoreCore.Views
             genrePopup.IsOpen = true;
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void SetGenres()
         {
             genresWrapPanel.Children.Clear();
             foreach (Genre item in genreList.Items)
@@ -54,6 +54,16 @@ namespace BookStoreCore.Views
                     });
                 }
             }
+            }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            SetGenres();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetGenres();
         }
     }
 }

@@ -49,12 +49,12 @@ namespace BookStoreCore
 
         private BookViewModel CreateBookViewModel()
         {
-            return new BookViewModel(_bookDetails, new NavigationService(this._navigationStore, CreateAdminMainViewModel));
+            return new BookViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
         }
 
         private AdminMainViewModel CreateAdminMainViewModel()
         {
-            return new AdminMainViewModel(_bookDetails, this._navigationStore);
+            return new AdminMainViewModel(this._navigationStore);
         }
 
         private UserLoginViewModel CreateUserLoginViewModel()

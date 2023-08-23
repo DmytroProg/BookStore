@@ -12,22 +12,29 @@ namespace DataAccessLayer.Repository
 {
     public class BookDetailsRepository : IRepository<BookDetailsInfo>
     {
-        private BookDetailsContext _bookDetailsContext = null!;
+        private BookStoreContext _bookDetailsContext = null!;
 
         public BookDetailsRepository(string connectionString)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder().UseSqlServer(connectionString);
-            this._bookDetailsContext = new BookDetailsContext(dbContextOptionsBuilder.Options);
+            this._bookDetailsContext = new BookStoreContext(dbContextOptionsBuilder.Options);
         }
 
         public void Add(BookDetailsInfo value)
         {
-            throw new NotImplementedException();
+            if(value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            this._bookDetailsContext.Add(value);
+            this._bookDetailsContext.SaveChanges();
         }
 
         public IEnumerable<BookDetailsInfo> GetAll()
         {
-            throw new NotImplementedException();
+            return this._bookDetailsContext.BookDetails
+                .Include(x => x.Book)
+                .Include(x => x.Book.Author)
+                .Include(x => x.Book.Genres);
         }
 
         public void Remove(BookDetailsInfo value)

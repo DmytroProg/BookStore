@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.Models
         public Author Author { get; set; } = null!;
         public string Publisher { get; set; } = null!;
         public int PageCount { get; set; }
-        public List<string> Genres { get; set; } = null!;
+        public List<Genre> Genres { get; set; } = null!;
         public int PublishYear { get; set; }
         public decimal Value { get; set; }
         public decimal Price { get; set; }

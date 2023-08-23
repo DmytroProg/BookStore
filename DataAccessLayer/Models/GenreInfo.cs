@@ -16,5 +16,7 @@ namespace DataAccessLayer.Models
         [Required]
         [MaxLength(50)]
         public string GenreName { get; set; } = null!;
+
+        public virtual ICollection<BookInfo> Books { get; set; } = null!;
     }
 }

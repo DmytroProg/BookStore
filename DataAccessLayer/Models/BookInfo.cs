@@ -18,11 +18,16 @@ namespace DataAccessLayer.Models
         public string Name { get; set; } = null!;
 
         [Required]
+        [ForeignKey(nameof(Author))]
+        public int AuthorId { get; set; }
+
         public virtual AuthorInfo Author { get; set; } = null!;
 
         [Required]
         [MaxLength(100)]
         public string Publisher { get; set; } = null!;
+
+        public virtual ICollection<GenreInfo> Genres { get; set; } = null!;
 
         [Required]
         public int PageCount { get; set; }
@@ -42,5 +47,7 @@ namespace DataAccessLayer.Models
 
         [Required]
         public string Image { get; set; } = null!;
+
+        public virtual BookDetailsInfo BookDetails { get; set; } = null!;
     }
 }

@@ -12,11 +12,15 @@ using GalaSoft.MvvmLight.Command;
 using System.CodeDom;
 using System.Windows;
 using System.DirectoryServices.ActiveDirectory;
+using BusinessLogicLayer.Services;
+using System.Configuration;
 
 namespace BookStoreCore.ViewModels
 {
     public class BookViewModel : ViewModelBase
     {
+        private BookDetailsService _bookDetailsService;
+
         private int _id;
         private string _title;
         private Author _author;
@@ -127,7 +131,7 @@ namespace BookStoreCore.ViewModels
                     Name = this.Title,
                     Author = new Author() { Name = this.Author.Name,
                         LastName = this.Author.LastName },
-                    Genres = new List<string>(this.Genres.Select(x => x.GenreName)),
+                    Genres = new List<Genre>(this.Genres),
                     PageCount = this.PageCount,
                     Price = this.Price,
                     PublishYear = this.PublishYear,
@@ -136,24 +140,25 @@ namespace BookStoreCore.ViewModels
                     Part = this.Part,
                     Image = this.ImagePath
                 };
-                _bookDetails.Add(new BookDetails()
+                var bookDetails = new BookDetails()
                     {
                         Book = book,
                         Count = 0,
                         IsAvailable = false
-                    });
+                    };
+
+                this._bookDetailsService.Add(bookDetails);
+
                 GoBackToAdminMain?.Execute(null);
                 });
         }
 
-        private List<BookDetails> _bookDetails;
-
-        public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService)
+        public BookViewModel(NavigationService navigationService)
         {
             this._id = -1;
-
+            this._bookDetailsService = new BookDetailsService(
+                ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString);
             GoBackToAdminMain = new NavigationCommand(navigationService);
-            this._bookDetails = bookDetails;
 
             // Test
             this.Authors = new List<Author>() {
@@ -178,7 +183,7 @@ namespace BookStoreCore.ViewModels
         }
 
         public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService, 
-            Book book) : this(bookDetails, navigationService)
+            Book book) : this(navigationService)
         {
             this._id = book.Id;
             this.Title = book.Name;
@@ -188,9 +193,10 @@ namespace BookStoreCore.ViewModels
             this.Value = book.Value;
             this.Price = book.Price;
             this.Part = book.Part;
+            this.PageCount = book.PageCount;
             this.ImagePath = book.Image;
 
-            this.Genres.Where(x => book.Genres.Contains(x.GenreName))
+            this.Genres.Where(x => book.Genres.Select(x => x.GenreName).Contains(x.GenreName))
                 .ToList()
                 .ForEach(x => x.IsSelected = true);
 

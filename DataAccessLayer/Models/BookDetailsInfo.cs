@@ -13,6 +13,9 @@ namespace DataAccessLayer.Models
     {
         public int Id { get; set; }
 
+        [ForeignKey(nameof(Book))]
+        public int BookId { get; set; }
+
         [Required]
         public virtual BookInfo Book { get; set; } = null!;
 

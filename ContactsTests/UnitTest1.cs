@@ -24,8 +24,8 @@ namespace ContactsTests
         public void TitleValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -71,8 +71,8 @@ namespace ContactsTests
         public void PublisherValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -118,8 +118,8 @@ namespace ContactsTests
         public void ImagePathValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -165,8 +165,8 @@ namespace ContactsTests
         public void PriceValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -212,8 +212,8 @@ namespace ContactsTests
         public void ValueValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -259,8 +259,8 @@ namespace ContactsTests
         public void PublisherYearValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -306,8 +306,8 @@ namespace ContactsTests
         public void PageCountValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -353,8 +353,8 @@ namespace ContactsTests
         public void PartValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -400,8 +400,8 @@ namespace ContactsTests
         public void AuthorValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
-            var bookViewModel2 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
+            var bookViewModel2 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);
@@ -447,7 +447,7 @@ namespace ContactsTests
         public void GenreValidationTest()
         {
             //Asign
-            var bookViewModel1 = new BookViewModel(null, null);
+            var bookViewModel1 = new BookViewModel(null);
 
             //Act
             SetAcceptableBookBiewModel(bookViewModel1);

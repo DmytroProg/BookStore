@@ -1,6 +1,0 @@
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csproj.AssemblyReference.cache
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.GeneratedMSBuildEditorConfig.editorconfig
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfoInputs.cache
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfo.cs
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csproj.CoreCompileInputs.cache

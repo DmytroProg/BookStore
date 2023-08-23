@@ -18,6 +18,8 @@ namespace BookStoreCore.ViewModels
         private string _login = null!;
         private string _password = null!;
 
+        private NavigationService _navigationService;
+
         public string Login {
             get => _login;
             set
@@ -39,14 +41,16 @@ namespace BookStoreCore.ViewModels
 
         public UserLoginViewModel(NavigationService navigationService)
         {
+            this._navigationService = navigationService;
             LogToAccaunt = new RelayCommand(() =>
             {
                 if (!IsValid())
                 {
                     MessageBox.Show("The input is incorrect. Fields must be filled and the password mush consist of at least 8 characters", 
                         "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
-                navigationService.Navigate();
+                this._navigationService.Navigate();
             });
         }
 
