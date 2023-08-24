@@ -17,5 +17,10 @@ namespace BusinessLogicLayer.Models
         {
             return $"{this.LastName} {this.Name}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            return this.Id == (obj as Author)?.Id;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace BookStoreCore.ViewModels
     {
         private BookDetailsService _bookDetailsService = null!;
 
-        private int _id;
+        private BookDetails? updateBook;
         private string _title;
         private Author _author;
         private string _imagePath;
@@ -129,8 +129,12 @@ namespace BookStoreCore.ViewModels
                 }
                 var book = new Book() {
                     Name = this.Title,
-                    Author = new Author() { Name = this.Author.Name,
-                        LastName = this.Author.LastName },
+                    Author = new Author() { 
+                        Id = this.Author.Id,
+                        Name = this.Author.Name,
+                        LastName = this.Author.LastName,
+                        BornYear = this.Author.BornYear,
+                    },
                     Genres = new List<Genre>(this.Genres),
                     PageCount = this.PageCount,
                     Price = this.Price,
@@ -147,7 +151,17 @@ namespace BookStoreCore.ViewModels
                         IsAvailable = false
                     };
 
-                this._bookDetailsService.Add(bookDetails);
+                if (this.updateBook != null)
+                {
+                    bookDetails.Id = this.updateBook.Id;
+                    bookDetails.Book.Id = this.updateBook.Book.Id;
+                    bookDetails.Book.Author.Id = this.updateBook.Book.Author.Id;
+                    this._bookDetailsService.Update(bookDetails);
+                }
+                else
+                {
+                    this._bookDetailsService.Add(bookDetails);
+                }
 
                 GoBackToAdminMain?.Execute(null);
                 });
@@ -155,48 +169,31 @@ namespace BookStoreCore.ViewModels
 
         public BookViewModel(NavigationService navigationService)
         {
-            this._id = -1;
-            this._bookDetailsService = new BookDetailsService(
-                ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString);
+            this.updateBook = null;
+            string connectionString = ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString;
+            this._bookDetailsService = new BookDetailsService(connectionString);
             GoBackToAdminMain = new NavigationCommand(navigationService);
 
-            // Test
-            this.Authors = new List<Author>() {
-                new Author(){ Name = "Name1", LastName = "LastName1" },
-                new Author(){ Name = "Test2", LastName = "LastName2" },
-                new Author(){ Name = "Name3", LastName = "LastName3" },
-                new Author(){ Name = "Name1", LastName = "LastName1" },
-                new Author(){ Name = "Test2", LastName = "LastName2" },
-                new Author(){ Name = "Name3", LastName = "LastName3" },
-                new Author(){ Name = "Hello", LastName = "LastName1" },
-                new Author(){ Name = "Test2", LastName = "LastName2" },
-                new Author(){ Name = "Name3", LastName = "LastName3" },
-            };
-
-            this.Genres = new List<Genre>{
-                new Genre(){ GenreName = "Horror", IsSelected = false },
-                new Genre() { GenreName = "Fiction", IsSelected = false },
-                new Genre() { GenreName = "Detective", IsSelected = false },
-                new Genre() { GenreName = "Novel", IsSelected = false }
-            };
-            //////////////////////
+            var bookService = new BookService(connectionString);
+            this.Authors = new List<Author>(bookService.GetAuthors());
+            this.Genres = new List<Genre>(bookService.GetGenres());
         }
 
         public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService, 
-            Book book) : this(navigationService)
+            BookDetails book) : this(navigationService)
         {
-            this._id = book.Id;
-            this.Title = book.Name;
-            this.Publisher = book.Publisher;
-            this.PublishYear = book.PublishYear;
-            this.Author = book.Author;
-            this.Value = book.Value;
-            this.Price = book.Price;
-            this.Part = book.Part;
-            this.PageCount = book.PageCount;
-            this.ImagePath = book.Image;
+            this.updateBook = book;
+            this.Title = book.Book.Name;
+            this.Publisher = book.Book.Publisher;
+            this.PublishYear = book.Book.PublishYear;
+            this.Author = book.Book.Author;
+            this.Value = book.Book.Value;
+            this.Price = book.Book.Price;
+            this.Part = book.Book.Part;
+            this.PageCount = book.Book.PageCount;
+            this.ImagePath = book.Book.Image;
 
-            this.Genres.Where(x => book.Genres.Select(x => x.GenreName).Contains(x.GenreName))
+            this.Genres.Where(x => book.Book.Genres.Select(x => x.GenreName).Contains(x.GenreName))
                 .ToList()
                 .ForEach(x => x.IsSelected = true);
 

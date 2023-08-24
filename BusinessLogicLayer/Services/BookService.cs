@@ -124,7 +124,10 @@ namespace BusinessLogicLayer.Services
 
         public void Update(Book value)
         {
-            throw new NotImplementedException();
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            this._bookRepository.Update(TranslateToBookInfo(value));
         }
 
         public IEnumerable<Author> GetAuthors()

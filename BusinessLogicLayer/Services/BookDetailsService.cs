@@ -51,6 +51,7 @@ namespace BusinessLogicLayer.Services
                 throw new ArgumentNullException(nameof(value));
 
             this._bookService.Add(value.Book);
+            value.Book.Id = this._bookService.GetAll().Last().Id;
             this._bookDetailsRepository.Add(TranslateToBookDetailsInfo(value));
         }
 
@@ -66,7 +67,12 @@ namespace BusinessLogicLayer.Services
 
         public void Update(BookDetails value)
         {
-            throw new NotImplementedException();
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            this._bookService.Update(value.Book);
+            value.Book.Id = this._bookService.GetAll().Last().Id;
+            this._bookDetailsRepository.Update(TranslateToBookDetailsInfo(value));
         }
 
         public BookDetails FindOne(int id)

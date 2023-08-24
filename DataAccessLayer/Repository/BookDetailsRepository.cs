@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repository
             if(value is null)
                 throw new ArgumentNullException(nameof(value));
 
-            this._bookDetailsContext.Add(value);
+            this._bookDetailsContext.BookDetails.Add(value);
             this._bookDetailsContext.SaveChanges();
         }
 
@@ -47,12 +47,26 @@ namespace DataAccessLayer.Repository
             if(value is null)
                 throw new ArgumentNullException(nameof(value));
 
-            this._bookDetailsContext.Remove(value);
+            this._bookDetailsContext.BookDetails.Remove(value);
         }
 
         public void Update(BookDetailsInfo value)
         {
-            throw new NotImplementedException();
+            if(value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            var tempBookDetails = this._bookDetailsContext.BookDetails.Find(value.Id);
+
+            if(tempBookDetails is null)
+                throw new ArgumentException(nameof(value));
+
+            tempBookDetails.BookId = value.BookId;
+            tempBookDetails.Count = value.Count;
+            tempBookDetails.IsAvailable = value.IsAvailable;
+
+            this._bookDetailsContext.BookDetails.Update(tempBookDetails);
+
+            this._bookDetailsContext.SaveChanges();
         }
     }
 }

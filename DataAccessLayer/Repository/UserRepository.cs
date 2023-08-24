@@ -39,6 +39,7 @@ namespace DataAccessLayer.Repository
         public void Remove(UserInfo value)
         {
             this._userContext.Remove(value);
+            this._userContext.SaveChanges();
         }
 
         public void Update(UserInfo value)

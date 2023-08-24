@@ -125,9 +125,6 @@ E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\obj\Debug\net6.0-
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\obj\Debug\net6.0-windows\ContactsTests.genruntimeconfig.cache
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\obj\Debug\net6.0-windows\ref\ContactsTests.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\AutoMapper.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Azure.Core.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Azure.Identity.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Data.SqlClient.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -143,16 +140,12 @@ E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Identity.Client.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Abstractions.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Logging.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Tokens.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\System.IdentityModel.Tokens.Jwt.dll
-E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\System.Memory.Data.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\System.Runtime.Caching.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\ContactsTests\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll

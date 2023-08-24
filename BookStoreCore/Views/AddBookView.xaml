@@ -161,11 +161,11 @@
 
                         <Label Grid.Row="0" Target="{Binding ElementName=valueTextBox}">Value</Label>
                         <TextBox Grid.Row="1" x:Name="valueTextBox" Margin="0, 10, 10, 10"
-                                 Text="{Binding Value}"></TextBox>
+                                 Text="{Binding Value, StringFormat={}{0:n}}"></TextBox>
 
                         <Label Grid.Row="0" Grid.Column="1" Target="{Binding ElementName=priceTextBox}">Price</Label>
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="priceTextBox" Margin="0, 10, 10, 10"
-                                 Text="{Binding Price}"></TextBox>
+                                 Text="{Binding Price, StringFormat={}{0:n}}"></TextBox>
                     </Grid>
 
                     <Grid>

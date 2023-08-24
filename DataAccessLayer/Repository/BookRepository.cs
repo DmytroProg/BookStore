@@ -25,7 +25,16 @@ namespace DataAccessLayer.Repository
             if(value is null)
                 throw new ArgumentNullException(nameof(value));
 
+            var author = value.Author.Id;
+            value.Author = this._bookStoreContext.Authors.First(x => x.Id == author);
+
+            var genres = value.Genres.Select(x => x.Id);
+
+            var tempGenres = this._bookStoreContext.Genres.Where(x => genres.Contains(x.Id));
+            value.Genres = new List<GenreInfo>(tempGenres);
+
             this._bookStoreContext.Books.Add(value);
+            this._bookStoreContext.SaveChanges();
         }
 
         public IEnumerable<BookInfo> GetAll()
@@ -41,11 +50,44 @@ namespace DataAccessLayer.Repository
                 throw new ArgumentNullException(nameof(value));
 
             this._bookStoreContext.Books.Add(value);
+            this._bookStoreContext.SaveChanges();
         }
 
         public void Update(BookInfo value)
         {
-            throw new NotImplementedException();
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            var tempBook = this._bookStoreContext.Books
+                .Include(x => x.Author)
+                .Include(x => x.Genres)
+                .First(x => x.Id == value.Id);
+
+            if (tempBook is null)
+                throw new ArgumentException(nameof(tempBook));
+
+            tempBook.Name = value.Name;
+
+            var author = value.Author.Id;
+            tempBook.Author = this._bookStoreContext.Authors.First(x => x.Id == author);
+
+            tempBook.AuthorId = value.AuthorId;
+            tempBook.Value = value.Value;
+            tempBook.Price = value.Price;
+
+            //tempBook.Genres.Clear();
+            var genres = value.Genres.Select(x => x.Id);
+            tempBook.Genres = this._bookStoreContext.Genres.Where(x => genres.Contains(x.Id)).ToList();
+
+            tempBook.PageCount = value.PageCount;
+            tempBook.Part = value.Part;
+            tempBook.Image = value.Image;
+            tempBook.Publisher = value.Publisher;
+            tempBook.PublishYear = value.PublishYear;
+
+            this._bookStoreContext.Books.Update(tempBook);
+
+            this._bookStoreContext.SaveChanges();
         }
 
         public IEnumerable<AuthorInfo> GetAuthors()
@@ -64,6 +106,7 @@ namespace DataAccessLayer.Repository
                 throw new ArgumentNullException(nameof(value));
 
             this._bookStoreContext.Authors.Add(value);
+            this._bookStoreContext.SaveChanges();
         }
 
         public BookInfo FindOne(int id)
