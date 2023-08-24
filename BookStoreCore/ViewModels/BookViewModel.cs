@@ -19,7 +19,7 @@ namespace BookStoreCore.ViewModels
 {
     public class BookViewModel : ViewModelBase
     {
-        private BookDetailsService _bookDetailsService;
+        private BookDetailsService _bookDetailsService = null!;
 
         private int _id;
         private string _title;

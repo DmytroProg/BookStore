@@ -29,6 +29,11 @@ namespace DataAccessLayer.Repository
             this._bookDetailsContext.SaveChanges();
         }
 
+        public BookDetailsInfo FindOne(int id)
+        {
+            return GetAll().First(x => x.Id == id);
+        }
+
         public IEnumerable<BookDetailsInfo> GetAll()
         {
             return this._bookDetailsContext.BookDetails
@@ -39,7 +44,10 @@ namespace DataAccessLayer.Repository
 
         public void Remove(BookDetailsInfo value)
         {
-            throw new NotImplementedException();
+            if(value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            this._bookDetailsContext.Remove(value);
         }
 
         public void Update(BookDetailsInfo value)

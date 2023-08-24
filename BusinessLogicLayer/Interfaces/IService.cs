@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Interfaces
         void Remove(T value);
         void Update(T value);
         IEnumerable<T> GetAll();
+        T FindOne(int id);
     }
 }

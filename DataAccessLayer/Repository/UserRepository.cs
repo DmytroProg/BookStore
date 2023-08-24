@@ -26,6 +26,11 @@ namespace DataAccessLayer.Repository
             this._userContext.SaveChanges();
         }
 
+        public UserInfo FindOne(int id)
+        {
+            return this._userContext.Users.First(x => x.Id == id);
+        }
+
         public IEnumerable<UserInfo> GetAll()
         {
             return this._userContext.Users;

@@ -68,5 +68,10 @@ namespace BusinessLogicLayer.Services
         {
             return GetAll().Select(u => u.Login).Contains(login);
         }
+
+        public User FindOne(int id)
+        {
+            return TranslateToUserModel(this._userRepository.FindOne(id));
+        }
     }
 }

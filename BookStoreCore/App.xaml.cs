@@ -2,6 +2,7 @@
 using BookStoreCore.Stores;
 using BookStoreCore.ViewModels;
 using BusinessLogicLayer.Models;
+using BusinessLogicLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,14 +25,13 @@ namespace BookStoreCore
 
     public partial class App : Application
     {
-        private NavigationStore _navigationStore;
-        private List<BookDetails> _bookDetails;
-        private User _user;
+        private NavigationStore _navigationStore = null!;
+
+        private User _user = null!;
 
         public App()
         {
             this._navigationStore = new NavigationStore();
-            _bookDetails = new List<BookDetails>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

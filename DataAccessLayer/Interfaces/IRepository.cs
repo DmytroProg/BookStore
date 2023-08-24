@@ -12,5 +12,6 @@ namespace DataAccessLayer.Interfaces
         void Update(T value);
         void Remove(T value);
         IEnumerable<T> GetAll();
+        T FindOne(int id);
     }
 }
