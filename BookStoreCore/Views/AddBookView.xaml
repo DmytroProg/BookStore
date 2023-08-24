@@ -79,7 +79,28 @@
                         SelectedItem="{Binding Author, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         IsSynchronizedWithCurrentItem="True"></ComboBox>
                         <Button Grid.Column="1" Grid.Row="1"
-                            x:Name="addAuthorBtn">+ New Author</Button>
+                            x:Name="addAuthorBtn"
+                            Click="addAuthorBtn_Click">+ New Author</Button>
+
+                        <Popup x:Name="authorPanel"
+                               Placement="Right"
+                               StaysOpen="False"
+                               PopupAnimation="Scroll">
+                            <StackPanel Background="Silver" MinWidth="300">
+                                <Label Target="{Binding ElementName=authorNameTextBox}">Name</Label>
+                                <TextBox x:Name="authorNameTextBox" 
+                                    Text="{Binding NewAuthor.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                <Label Target="{Binding ElementName=authorLastNameTextBox}">Last Name</Label>
+                                <TextBox x:Name="authorLastNameTextBox" 
+                                    Text="{Binding NewAuthor.LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                <Label Target="{Binding ElementName=authorYearBox}">year of birth</Label>
+                                <TextBox x:Name="authorYearBox" 
+                                    Text="{Binding NewAuthor.BornYear, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                <Button x:Name="authorAddBtn"
+                                        Command="{Binding AddNewAuthor}"
+                                        Margin="20, 10">Add Author</Button>
+                            </StackPanel>
+                        </Popup>
                     </Grid>
 
                     <Grid>

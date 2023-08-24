@@ -13,6 +13,8 @@ using BookStoreCore.Services;
 using GalaSoft.MvvmLight.Command;
 using BusinessLogicLayer.Services;
 using System.Configuration;
+using GalaSoft.MvvmLight.Messaging;
+using System.Windows;
 
 namespace BookStoreCore.ViewModels
 {
@@ -39,8 +41,6 @@ namespace BookStoreCore.ViewModels
 
             this.BookDetails = new ObservableCollection<BookDetails>();
             UpdateBookCollection(this._bookDetailsService.GetAll());
-
-           
         }
 
         private void UpdateBookCollection(IEnumerable<BookDetails> bookDetails)
@@ -50,6 +50,18 @@ namespace BookStoreCore.ViewModels
             {
                 this.BookDetails.Add(bookDetail);
             }
+        }
+
+        public ICommand SaveDetails
+        {
+            get => new RelayCommand(() =>
+            {
+                foreach (var item in this.BookDetails)
+                {
+                    this._bookDetailsService.Update(item);
+                }
+                MessageBox.Show("Saved!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
         }
 
         private BookViewModel CreateBookViewModel()

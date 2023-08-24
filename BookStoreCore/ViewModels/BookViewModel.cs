@@ -14,12 +14,14 @@ using System.Windows;
 using System.DirectoryServices.ActiveDirectory;
 using BusinessLogicLayer.Services;
 using System.Configuration;
+using System.Collections.ObjectModel;
 
 namespace BookStoreCore.ViewModels
 {
     public class BookViewModel : ViewModelBase
     {
         private BookDetailsService _bookDetailsService = null!;
+        private BookService _bookService = null!;
 
         private BookDetails? updateBook;
         private string _title;
@@ -31,7 +33,56 @@ namespace BookStoreCore.ViewModels
         private decimal _value;
         private decimal _price;
         private int? _part;
+        private Author _newAuthor;
 
+        public Author NewAuthor {
+            get => _newAuthor;
+            set
+            {
+                _newAuthor = value;
+                OnPropertyChanged(nameof(NewAuthor));
+            }
+        }
+
+        public ICommand AddNewAuthor
+        {
+            get => new RelayCommand(() =>
+            {
+                try
+                {
+                    if (IsAuthorValid())
+                    {
+                        this._bookService.AddAuthor(this.NewAuthor);
+                        this.Authors.Add(this.NewAuthor);
+                        MessageBox.Show("New author is added!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect data passed to the form", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch(ArgumentNullException)
+                {
+                    MessageBox.Show("Incorrect data passed to the form", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot create a new author right now. Check your input or contact us",
+                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            });
+        }
+
+        private bool IsAuthorValid()
+        {
+            if (string.IsNullOrEmpty(this.NewAuthor.Name) || string.IsNullOrWhiteSpace(this.NewAuthor.Name))
+                return false;
+            if (string.IsNullOrEmpty(this.NewAuthor.LastName) || string.IsNullOrWhiteSpace(this.NewAuthor.LastName))
+                return false;
+            if (this.NewAuthor.BornYear <= 0)
+                return false;
+            return true;
+        }
 
         public string Title
         {
@@ -115,7 +166,7 @@ namespace BookStoreCore.ViewModels
             }
         }
 
-        public List<Author> Authors { get; set; }
+        public ObservableCollection<Author> Authors { get; set; }
         public List<Genre> Genres { get; set; }
 
         public ICommand GoBackToAdminMain { get; }
@@ -170,13 +221,14 @@ namespace BookStoreCore.ViewModels
         public BookViewModel(NavigationService navigationService)
         {
             this.updateBook = null;
+            this.NewAuthor = new Author();
             string connectionString = ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString;
             this._bookDetailsService = new BookDetailsService(connectionString);
+            this._bookService = new BookService(connectionString);
             GoBackToAdminMain = new NavigationCommand(navigationService);
 
-            var bookService = new BookService(connectionString);
-            this.Authors = new List<Author>(bookService.GetAuthors());
-            this.Genres = new List<Genre>(bookService.GetGenres());
+            this.Authors = new ObservableCollection<Author>(this._bookService.GetAuthors());
+            this.Genres = new List<Genre>(this._bookService.GetGenres());
         }
 
         public BookViewModel(List<BookDetails> bookDetails, NavigationService navigationService, 
@@ -235,7 +287,7 @@ namespace BookStoreCore.ViewModels
                 throw new ArgumentException(nameof(Part));
             if (this.PublishYear <= 0)
                 throw new ArgumentException("Publish year");
-            if (Author is null || this.Authors.Find(x => x.Name == this.Author.Name && x.LastName ==
+            if (Author is null || this.Authors.ToList().Find(x => x.Name == this.Author.Name && x.LastName ==
                 this.Author.LastName) is null)
                 throw new ArgumentException(nameof(this.Author));
             if (string.IsNullOrEmpty(this.ImagePath) || string.IsNullOrWhiteSpace(this.ImagePath))

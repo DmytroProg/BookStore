@@ -65,5 +65,10 @@ namespace BookStoreCore.Views
         {
             SetGenres();
         }
+
+        private void addAuthorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            authorPanel.IsOpen = true;
+        }
     }
 }
