@@ -88,6 +88,6 @@
         <Button x:Name="saveBtn"
                 Grid.Row="3"
                 Margin="300, 10"
-                Command="{Binding SaveDetails}">Save details</Button>
+                Command="{Binding SaveDetails}">Save changes</Button>
     </Grid>
 </UserControl>

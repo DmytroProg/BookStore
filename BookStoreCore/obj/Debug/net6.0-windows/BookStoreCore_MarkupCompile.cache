@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\App.xaml
-4-1344479339
+51090261623
 
-14-974219062
+161243336558
 222-1979794512
-MainWindow.xaml;Views\AddBookView.xaml;Views\AdminMainView.xaml;Views\UserLoginView.xaml;
+MainWindow.xaml;Views\AddBookView.xaml;Views\AdminMainView.xaml;Views\UserLoginView.xaml;Views\UserMainView.xaml;
 
 False
 

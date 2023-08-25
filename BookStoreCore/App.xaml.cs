@@ -27,8 +27,6 @@ namespace BookStoreCore
     {
         private NavigationStore _navigationStore = null!;
 
-        private User _user = null!;
-
         public App()
         {
             this._navigationStore = new NavigationStore();
@@ -59,7 +57,13 @@ namespace BookStoreCore
 
         private UserLoginViewModel CreateUserLoginViewModel()
         {
-            return new UserLoginViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
+            return new UserLoginViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel),
+                new NavigationService(this._navigationStore, CreateUserMainViewModel));
+        }
+
+        private UserMainViewModel CreateUserMainViewModel()
+        {
+            return new UserMainViewModel();
         }
     }
 }

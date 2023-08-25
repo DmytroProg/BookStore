@@ -1,9 +1,12 @@
 ﻿using BookStoreCore.Commands;
 using BookStoreCore.Services;
+using BusinessLogicLayer.Models;
+using BusinessLogicLayer.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
@@ -18,7 +21,9 @@ namespace BookStoreCore.ViewModels
         private string _login = null!;
         private string _password = null!;
 
-        private NavigationService _navigationService;
+        private NavigationService _adminNavigationService;
+        private NavigationService _userNavigationService;
+        private UserService _userService { get; set; }
 
         public string Login {
             get => _login;
@@ -39,9 +44,12 @@ namespace BookStoreCore.ViewModels
             }
         }
 
-        public UserLoginViewModel(NavigationService navigationService)
+        public UserLoginViewModel(NavigationService adminNavigationService ,
+            NavigationService userNavigationService)
         {
-            this._navigationService = navigationService;
+            this._adminNavigationService = adminNavigationService;
+            this._userNavigationService = userNavigationService;
+            this._userService = new UserService(ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString);
             LogToAccaunt = new RelayCommand(() =>
             {
                 if (!IsValid())
@@ -50,7 +58,27 @@ namespace BookStoreCore.ViewModels
                         "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                this._navigationService.Navigate();
+                var tempUser = this._userService.GetAll()
+                .FirstOrDefault(x => x.Login == this.Login && x.Password == this.Password);
+                if(tempUser != null)
+                {
+                    User user = User.GetInstance();
+                    user.Name = tempUser.Name;
+                    user.LastName = tempUser.LastName;
+                    user.Login = tempUser.Login;
+                    user.Password = tempUser.Password;
+                    user.IsAdmin = tempUser.IsAdmin;
+
+                    if(user.IsAdmin)
+                        this._adminNavigationService.Navigate();
+                    else 
+                        this._userNavigationService.Navigate();
+                }
+                else
+                {
+                    MessageBox.Show("No user found with this login and password", "Warning",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             });
         }
 
