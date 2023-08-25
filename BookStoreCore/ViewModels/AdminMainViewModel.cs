@@ -32,6 +32,26 @@ namespace BookStoreCore.ViewModels
                 new RelayCommand<BookDetails>(book => new NavigationService(this._navigationStore, () => UpdateBookViewModel(book)).Navigate(), false);
         }
 
+        public ICommand DeleteBookView
+        {
+            get => 
+                new RelayCommand<BookDetails>(book => {
+                    if(book is null)
+                    {
+                        MessageBox.Show("Select a book before deleting", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    var dialog = MessageBox.Show($"Are you sure you want to delete book \"{book.Book.Name}\"?",
+                        "Message", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (dialog == MessageBoxResult.Yes)
+                    {
+                        this._bookDetailsService.Remove(book);
+                        UpdateBookCollection(this._bookDetailsService.GetAll());
+                    }
+                });
+        }
+
         public AdminMainViewModel(NavigationStore navigationStore)
         {
             this._navigationStore = navigationStore;

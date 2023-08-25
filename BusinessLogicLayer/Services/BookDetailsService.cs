@@ -62,7 +62,12 @@ namespace BusinessLogicLayer.Services
 
         public void Remove(BookDetails value)
         {
-            throw new NotImplementedException();
+            if(value is null)
+                throw new ArgumentNullException(nameof(value));
+
+            var tempBook = this._bookService.FindOne(value.Book.Id); 
+            this._bookService.Remove(tempBook);
+            //this._bookDetailsRepository.Remove(TranslateToBookDetailsInfo(value));
         }
 
         public void Update(BookDetails value)

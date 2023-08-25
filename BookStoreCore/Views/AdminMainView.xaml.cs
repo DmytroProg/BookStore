@@ -19,9 +19,24 @@ namespace BookStoreCore.Views
     /// </summary>
     public partial class AdminMainView : UserControl
     {
+        private string savedText = "Saved";
+        private string changedText = "*Unsaved";
+
         public AdminMainView()
         {
             InitializeComponent();
+        }
+
+        private void booksDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            changesTextBox.Text = changedText;
+            changesTextBox.Foreground = Brushes.Red;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            changesTextBox.Text = savedText;
+            changesTextBox.Foreground = Brushes.Green;
         }
     }
 }

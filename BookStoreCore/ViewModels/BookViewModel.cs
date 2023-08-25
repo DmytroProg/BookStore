@@ -207,6 +207,8 @@ namespace BookStoreCore.ViewModels
                     bookDetails.Id = this.updateBook.Id;
                     bookDetails.Book.Id = this.updateBook.Book.Id;
                     bookDetails.Book.Author.Id = this.updateBook.Book.Author.Id;
+                    bookDetails.Count = updateBook.Count;
+                    bookDetails.IsAvailable = updateBook.IsAvailable;
                     this._bookDetailsService.Update(bookDetails);
                 }
                 else

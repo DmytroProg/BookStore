@@ -17,6 +17,7 @@ namespace DataAccessLayer.Repository
         public BookDetailsRepository(string connectionString)
         {
             var dbContextOptionsBuilder = new DbContextOptionsBuilder().UseSqlServer(connectionString);
+            //dbContextOptionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             this._bookDetailsContext = new BookStoreContext(dbContextOptionsBuilder.Options);
         }
 
@@ -47,7 +48,14 @@ namespace DataAccessLayer.Repository
             if(value is null)
                 throw new ArgumentNullException(nameof(value));
 
-            this._bookDetailsContext.BookDetails.Remove(value);
+            var book = this._bookDetailsContext.BookDetails
+                .Include(x => x.Book).FirstOrDefault(x => x.Id == value.Id);
+
+            if (book is null)
+                throw new ArgumentException(nameof(book));
+
+            this._bookDetailsContext.BookDetails.Remove(book);
+            this._bookDetailsContext.SaveChanges();
         }
 
         public void Update(BookDetailsInfo value)

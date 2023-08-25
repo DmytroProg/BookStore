@@ -20,7 +20,11 @@ namespace BookStoreCore
     /*
     TODO
     - Custom password box
-    - Add author popup
+    - Add discounts
+    - Buy books
+    - Put aside books
+    - Search in admin main panel
+    - create account
      */
 
     public partial class App : Application
