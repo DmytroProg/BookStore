@@ -38,7 +38,7 @@
                 <Button x:Name="loginBtn" Margin="160, 0" MinHeight="30"
                         Command="{Binding LogToAccaunt}">Log in</Button>
                 <TextBlock FontSize="18" Margin="10">
-                    <Hyperlink Foreground="Gray">Create a new account
+                    <Hyperlink>Create a new account
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>

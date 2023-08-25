@@ -64,8 +64,7 @@ namespace BusinessLogicLayer.Services
                     LastName = book.Author.LastName,
                     BornYear = book.Author.BornYear
                 },
-                Genres = new List<GenreInfo>(book.Genres.Where(x => x.IsSelected)
-                    .Select(x => new GenreInfo()
+                Genres = new List<GenreInfo>(book.Genres.Select(x => new GenreInfo()
                     {
                         Id = x.Id,
                         GenreName = x.GenreName,

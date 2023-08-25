@@ -186,7 +186,7 @@ namespace BookStoreCore.ViewModels
                         LastName = this.Author.LastName,
                         BornYear = this.Author.BornYear,
                     },
-                    Genres = new List<Genre>(this.Genres),
+                    Genres = new List<Genre>(this.Genres.Where(x => x.IsSelected)),
                     PageCount = this.PageCount,
                     Price = this.Price,
                     PublishYear = this.PublishYear,

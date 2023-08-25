@@ -40,9 +40,7 @@
                 <TextBlock TextAlignment="Left"
                            Margin="10, 5"
                            FontSize="18">
-                    <Hyperlink Command="{Binding GoBackToAdminMain}"
-                               Foreground="Gray"
-                               TextDecorations="None">
+                    <Hyperlink Command="{Binding GoBackToAdminMain}">
                         Go back
                     </Hyperlink>
                 </TextBlock>
@@ -246,7 +244,7 @@
             <TextBlock x:Name="titleViewText" Grid.Row="1"
                        Text="{Binding Title}"></TextBlock>
             <TextBlock x:Name="authorViewText" Grid.Row="2" 
-                       Text="{Binding Author}" FontSize="20"></TextBlock>
+                       Text="{Binding Price, StringFormat={}{0:c}}" FontSize="20"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

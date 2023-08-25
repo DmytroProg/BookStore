@@ -45,11 +45,6 @@ namespace BookStoreCore
             base.OnStartup(e);
         }
 
-        private BookViewModel CreateBookViewModel()
-        {
-            return new BookViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
-        }
-
         private AdminMainViewModel CreateAdminMainViewModel()
         {
             return new AdminMainViewModel(this._navigationStore);
@@ -63,7 +58,7 @@ namespace BookStoreCore
 
         private UserMainViewModel CreateUserMainViewModel()
         {
-            return new UserMainViewModel();
+            return new UserMainViewModel(this._navigationStore);
         }
     }
 }

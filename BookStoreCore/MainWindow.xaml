@@ -11,6 +11,15 @@
         WindowStartupLocation="CenterOwner"
         MinHeight="500" MinWidth="800">
     <Window.Resources>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="TextDecorations" Value="None"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="RoyalBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="White"/>
@@ -61,6 +70,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:UserMainViewModel}">
                 <views:UserMainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:InfoBookViewModel}">
+                <views:InfoBookView/>
             </DataTemplate>
         </Grid.Resources>
 
