@@ -23,5 +23,20 @@ namespace BookStoreCore.Views
         {
             InitializeComponent();
         }
+
+        private void Grid_Checked(object sender, RoutedEventArgs e)
+        {
+            if (discountDataGrid is null) return;
+            if(discountRBtn.IsChecked == true)
+            {
+                booksDataGrid.Visibility = Visibility.Hidden;
+                discountDataGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                booksDataGrid.Visibility = Visibility.Visible;
+                discountDataGrid.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

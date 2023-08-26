@@ -35,6 +35,7 @@ namespace BusinessLogicLayer.Services
         public DiscountInfo TranslateToDiscountInfo(Discount discount) {
             return new DiscountInfo()
             {
+                Id = discount.Id,
                 Name = discount.Name,
                 Percents = discount.Percents,
             };

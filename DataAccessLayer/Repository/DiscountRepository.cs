@@ -44,7 +44,9 @@ namespace DataAccessLayer.Repository
             if (value is null)
                 throw new ArgumentNullException(nameof(value));
 
-            this._bookStoreContext.Discounts.Remove(value);
+            var discount = this._bookStoreContext.Discounts.First(x => x.Id == value.Id);
+
+            this._bookStoreContext.Discounts.Remove(discount);
             this._bookStoreContext.SaveChanges();
         }
 

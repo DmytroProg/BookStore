@@ -20,6 +20,8 @@ namespace BookStoreCore.ViewModels
     {
         private IService<Discount> _discountService;
         private IService<BookDetails> _bookDetailsService;
+        private IService<Book> _bookService;
+        private NavigationService _navigationService;
         private int _percent;
         private string _name;
         private string _selectedGenre;
@@ -65,6 +67,35 @@ namespace BookStoreCore.ViewModels
             }
         }
 
+        private bool _isBooks;
+
+        public bool IsBooksRadio
+        {
+            get => _isBooks;
+            set
+            {
+                _isBooks = value;
+                OnPropertyChanged(nameof(this.IsBooksRadio));
+                OnPropertyChanged(nameof(this.IsBooksTable));
+            }
+        }
+
+        public bool IsDiscountsRadio => !IsBooksRadio;
+
+        public Visibility IsBooksTable
+        {
+            get => _isBooks? Visibility.Visible : Visibility.Hidden;
+            set
+            {
+                _isBooks = value == Visibility.Visible;
+                OnPropertyChanged(nameof(IsBooksTable));
+                
+            }
+        }
+
+        public Visibility IsDiscountTable => 
+            IsBooksTable == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+
         private void UpdateCollection()
         {
             this.BookDetails.Clear();
@@ -77,9 +108,22 @@ namespace BookStoreCore.ViewModels
         }
 
         public ObservableCollection<BookDetails> BookDetails { get; set; }
+        public ObservableCollection<Discount> Discounts { get; set; }
         public ObservableCollection<string> Genres { get; set; }
 
         public ICommand AddDiscount { get; }
+        public ICommand GoBack { get; }
+        public ICommand DeleteDiscount {
+            get => new RelayCommand<Discount>(d =>
+            {
+                if(MessageBox.Show("Are you sure you want to delete this discount?", "Question",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    this._discountService.Remove(d);
+                    this.Discounts.Remove(d);
+                }
+            });
+        }
 
         public DiscountViewModel(NavigationService navigationService)
         {
@@ -87,12 +131,19 @@ namespace BookStoreCore.ViewModels
             string connectionString = ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString;
             this._discountService = new DiscountService(connectionString);
             this._bookDetailsService = new BookDetailsService(connectionString);
+            this._bookService = new BookService(connectionString);  
             this.BookDetails = new ObservableCollection<BookDetails>(this._bookDetailsService.GetAll()
                 .Where(x => x.IsAvailable && x.Count > 0));
-            this.Genres = new ObservableCollection<string>(new BookService(connectionString).GetGenres()
+            this.Discounts = new ObservableCollection<Discount>(this._discountService.GetAll());
+            this.Genres = new ObservableCollection<string>((this._bookService as BookService).GetGenres()
                 .Select(x => x.GenreName));
             this.Genres.Insert(0, "No specific genre");
-            this.AddDiscount = new RelayCommand(() => { CreateDiscount(); new NavigationCommand(navigationService).Execute(this); });
+            this._navigationService = navigationService;
+            this.GoBack = new NavigationCommand(this._navigationService);
+            this.AddDiscount = new RelayCommand(() => { 
+                CreateDiscount();
+                this.GoBack.Execute(this);
+            });
         }
 
         public DiscountViewModel()
@@ -107,11 +158,12 @@ namespace BookStoreCore.ViewModels
                 Percents = this.Persent,
                 Books = new List<Book>(this.BookDetails.Where(x => x.HasDiscount).Select(x => x.Book)),
             };
+            discount.Id = this._discountService.GetAll().Last().Id;
             this._discountService.Add(discount);
             foreach(var item in this.BookDetails.Where(x => x.HasDiscount))
             {
                 item.Book.Discount = discount;
-                this._bookDetailsService.Update(item);
+                this._bookService.Update(item.Book);
             }
             MessageBox.Show("Discount added!", "Message",
                 MessageBoxButton.OK, MessageBoxImage.Information);

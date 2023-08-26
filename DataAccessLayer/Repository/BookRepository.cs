@@ -93,6 +93,16 @@ namespace DataAccessLayer.Repository
             tempBook.Publisher = value.Publisher;
             tempBook.PublishYear = value.PublishYear;
 
+            if(value.Discount != null)
+            {
+                tempBook.Discount = new DiscountInfo()
+                {
+                    Id = value.Discount.Id,
+                    Name = value.Discount.Name,
+                    Percents = value.Discount.Percents
+                };
+            }
+
             this._bookStoreContext.Books.Update(tempBook);
 
             this._bookStoreContext.SaveChanges();
