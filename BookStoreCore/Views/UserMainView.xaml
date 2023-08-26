@@ -85,6 +85,7 @@
                                         <RowDefinition/>
                                         <RowDefinition Height="0.2*"/>
                                         <RowDefinition Height="0.2*"/>
+                                        <RowDefinition Height="0.2*"/>
                                     </Grid.RowDefinitions>
                                     <Image Source="{Binding Book.Image}" 
                                        MaxWidth="130" 
@@ -95,9 +96,15 @@
                                            Margin="10, 5"
                                            Text="{Binding Book.Name}"></TextBlock>
                                     <TextBlock Grid.Row="2"
+                                               FontSize="16"
+                                               TextDecorations="Strikethrough"
+                                               Margin="10, 5"
+                                               Text="{Binding Book.ActualPrice, StringFormat={}{0:c}}"></TextBlock>
+                                    <TextBlock Grid.Row="3"
                                            FontSize="20"
                                            Margin="10, 5"
-                                           Text="{Binding Book.Price, StringFormat={}{0:c}}"></TextBlock>
+                                           Foreground="Red"
+                                           Text="{Binding Book.PriceWithDiscount, StringFormat={}{0:c}}"></TextBlock>
                                 </Grid>
                             </Border>
                         </DataTemplate>

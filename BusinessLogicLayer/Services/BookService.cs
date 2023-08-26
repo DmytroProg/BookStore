@@ -47,6 +47,12 @@ namespace BusinessLogicLayer.Services
                 Price = book.Price,
                 Part = book.Part,
                 Image = book.Image,
+                Discount = book.Discount is null ? null : new Discount()
+                {
+                    Id = book.Discount.Id,
+                    Name = book.Discount.Name,
+                    Percents = book.Discount.Percents
+                }
             };
         }
 

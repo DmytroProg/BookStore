@@ -56,6 +56,9 @@
             <TextBlock Text="{Binding CurrentBook.Part, StringFormat=Part: {0}}">
             </TextBlock>
 
+            <TextBlock Text="{Binding CurrentBook.Discount.Name, StringFormat=Discount: {0}}">
+            </TextBlock>
+
             <TextBlock>Genres:</TextBlock>
 
             <ItemsControl ItemsSource="{Binding CurrentBook.Genres}"

@@ -158,8 +158,8 @@ namespace BookStoreCore.ViewModels
                 Percents = this.Persent,
                 Books = new List<Book>(this.BookDetails.Where(x => x.HasDiscount).Select(x => x.Book)),
             };
-            discount.Id = this._discountService.GetAll().Last().Id;
             this._discountService.Add(discount);
+            discount.Id = this._discountService.GetAll().Last().Id;
             foreach(var item in this.BookDetails.Where(x => x.HasDiscount))
             {
                 item.Book.Discount = discount;

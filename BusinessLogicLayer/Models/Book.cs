@@ -25,5 +25,11 @@ namespace BusinessLogicLayer.Models
         public int? Part { get; set; }
         public string Image { get; set; } = null!;
         public Discount? Discount { get; set; }
+
+        public decimal? ActualPrice { get => this.Discount is null ? null : this.Price; }
+        public decimal PriceWithDiscount
+        {
+            get => this.Price * (1m - ((this.Discount?.Percents ?? 0m) / 100m));
+        }
     }
 }

@@ -106,6 +106,7 @@
                 <DataGridCheckBoxColumn Header="Has discount" Binding="{Binding HasDiscount}"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Header="Title" Binding="{Binding Book.Name}" FontSize="18"></DataGridTextColumn>
                 <DataGridTextColumn Header="Count" Binding="{Binding Count}" FontSize="18"></DataGridTextColumn>
+                <DataGridTextColumn Header="Discount" Binding="{Binding Book.Discount.Name}" FontSize="18"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
