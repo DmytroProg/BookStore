@@ -43,7 +43,8 @@ namespace DataAccessLayer.Repository
         {
             return this._bookStoreContext.Books
                 .Include(x => x.Author)
-                .Include(x => x.Genres);
+                .Include(x => x.Genres)
+                .Include(x => x.Discount);
         }
 
         public void Remove(BookInfo value)

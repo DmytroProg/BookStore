@@ -65,10 +65,10 @@ namespace BusinessLogicLayer.Services
                     BornYear = book.Author.BornYear
                 },
                 Genres = new List<GenreInfo>(book.Genres.Select(x => new GenreInfo()
-                    {
-                        Id = x.Id,
-                        GenreName = x.GenreName,
-                    })),
+                {
+                    Id = x.Id,
+                    GenreName = x.GenreName,
+                })),
                 Publisher = book.Publisher,
                 PageCount = book.PageCount,
                 PublishYear = book.PublishYear,
@@ -76,6 +76,12 @@ namespace BusinessLogicLayer.Services
                 Price = book.Price,
                 Part = book.Part,
                 Image = book.Image,
+                Discount = book.Discount is null ? null : new DiscountInfo()
+                {
+                    Id = book.Discount.Id,
+                    Name = book.Discount.Name,
+                    Percents = book.Discount.Percents
+                }
             };
         }
 

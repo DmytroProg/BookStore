@@ -8,6 +8,11 @@ namespace BusinessLogicLayer.Models
 {
     public class Book
     {
+        public Book()
+        {
+            this.Genres = new List<Genre>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public Author Author { get; set; } = null!;
@@ -19,5 +24,6 @@ namespace BusinessLogicLayer.Models
         public decimal Price { get; set; }
         public int? Part { get; set; }
         public string Image { get; set; } = null!;
+        public Discount? Discount { get; set; }
     }
 }

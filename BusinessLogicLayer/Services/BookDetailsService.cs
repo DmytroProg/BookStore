@@ -75,8 +75,8 @@ namespace BusinessLogicLayer.Services
             if (value is null)
                 throw new ArgumentNullException(nameof(value));
 
-            this._bookService.Update(value.Book);
-            value.Book.Id = this._bookService.GetAll().Last().Id;
+            //this._bookService.Update(value.Book);
+            //value.Book.Id = this._bookService.GetAll().Last().Id;
             this._bookDetailsRepository.Update(TranslateToBookDetailsInfo(value));
         }
 

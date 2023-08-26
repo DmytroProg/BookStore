@@ -84,3 +84,5 @@ E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\InfoBookView.baml
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\CreateUserView.g.cs
 E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\CreateUserView.baml
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\AddDiscountView.g.cs
+E:\IT STEP\ADO.NET\ExamProjectCore\BookStoreCore\BookStoreCore\obj\Debug\net6.0-windows\Views\AddDiscountView.baml

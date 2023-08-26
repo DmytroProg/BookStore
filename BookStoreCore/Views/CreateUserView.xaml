@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-    <Style x:Key="Header" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="30"/>
-        <Setter Property="FontWeight" Value="DemiBold"/>
-        <Setter Property="Margin" Value="10, 10, 10, 0"/>
-    </Style>
-    <Style TargetType="TextBlock">
+        <Style x:Key="Header" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>

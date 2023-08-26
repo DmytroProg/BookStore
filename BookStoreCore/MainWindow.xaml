@@ -77,6 +77,9 @@
             <DataTemplate DataType="{x:Type vms:CreateUserViewModel}">
                 <views:CreateUserView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:DiscountViewModel}">
+                <views:AddDiscountView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrectViewModel}"></ContentControl>

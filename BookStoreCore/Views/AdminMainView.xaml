@@ -40,7 +40,8 @@
                 Add book
             </Button>
             <Button x:Name="addDiscountBtn" Margin="20, 15" 
-                 Grid.Column="2">
+                 Grid.Column="2"
+                    Command="{Binding AddDiscount}">
                 Add discount
             </Button>
             <Border Grid.Column="3" CornerRadius="10" Margin="20, 15"

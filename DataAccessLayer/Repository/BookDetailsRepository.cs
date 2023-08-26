@@ -40,7 +40,8 @@ namespace DataAccessLayer.Repository
             return this._bookDetailsContext.BookDetails
                 .Include(x => x.Book)
                 .Include(x => x.Book.Author)
-                .Include(x => x.Book.Genres);
+                .Include(x => x.Book.Genres)
+                .Include(x => x.Book.Discount);
         }
 
         public void Remove(BookDetailsInfo value)

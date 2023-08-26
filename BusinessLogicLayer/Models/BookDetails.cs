@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Models
         public Book Book { get; set; } = null!;
         public int Count { get; set; }
         public bool IsAvailable { get; set; }
+        public bool HasDiscount { get; set; }
     }
 }

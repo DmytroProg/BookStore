@@ -49,5 +49,7 @@ namespace DataAccessLayer.Models
         public string Image { get; set; } = null!;
 
         public virtual BookDetailsInfo BookDetails { get; set; } = null!;
+
+        public DiscountInfo? Discount { get; set; }
     }
 }

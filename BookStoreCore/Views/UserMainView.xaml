@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style x:Key="Hender" TargetType="TextBlock">
+        <Style x:Key="Header" TargetType="TextBlock">
             <Setter Property="FontSize" Value="28"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
         <Style x:Key="Item" TargetType="Border">
@@ -44,7 +44,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource Hender}">BookStore</TextBlock>
+            <TextBlock Style="{StaticResource Header}">BookStore</TextBlock>
         </Grid>
         <Grid Background="Azure"
             DockPanel.Dock="Bottom">

@@ -16,11 +16,12 @@ namespace DataAccessLayer.DataContext
             
         }
 
-        public virtual DbSet<BookDetailsInfo> BookDetails { get; set; }
-        public virtual DbSet<BookInfo> Books { get; set; }
-        public virtual DbSet<AuthorInfo> Authors { get; set; }   
-        public virtual DbSet<GenreInfo> Genres { get; set; }    
-        public virtual DbSet<OrderInfo> Orders { get; set; }
-        public virtual DbSet<UserInfo> Users { get; set; }
+        public DbSet<BookDetailsInfo> BookDetails { get; set; }
+        public DbSet<BookInfo> Books { get; set; }
+        public DbSet<AuthorInfo> Authors { get; set; }   
+        public DbSet<GenreInfo> Genres { get; set; }    
+        public DbSet<OrderInfo> Orders { get; set; }
+        public DbSet<UserInfo> Users { get; set; }
+        public DbSet<DiscountInfo> Discounts { get; set; }
     }
 }

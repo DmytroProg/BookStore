@@ -71,12 +71,15 @@ namespace BookStoreCore.ViewModels
                 });
         }
 
+        public ICommand AddDiscount { get; }
+
         public AdminMainViewModel(NavigationStore navigationStore)
         {
             this._navigationStore = navigationStore;
             this._bookDetailsService = new BookDetailsService(
                 ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString);
             this.ShowAddBookView = new NavigationCommand(new NavigationService(navigationStore, CreateBookViewModel));
+            this.AddDiscount = new NavigationCommand(new NavigationService(navigationStore, CreateDiscountViewModel));
 
             this.BookDetails = new ObservableCollection<BookDetails>();
             UpdateBookCollection(this._bookDetailsService.GetAll());
@@ -106,6 +109,11 @@ namespace BookStoreCore.ViewModels
         private BookViewModel CreateBookViewModel()
         {
             return new BookViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
+        }
+
+        private DiscountViewModel CreateDiscountViewModel()
+        {
+            return new DiscountViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel));
         }
 
         private BookViewModel UpdateBookViewModel(BookDetails book)

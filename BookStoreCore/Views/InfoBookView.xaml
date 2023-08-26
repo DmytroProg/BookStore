@@ -9,7 +9,7 @@
         d:DataContext ="{d:DesignInstance {x:Type local:InfoBookViewModel}, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <Style x:Key="Header" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
