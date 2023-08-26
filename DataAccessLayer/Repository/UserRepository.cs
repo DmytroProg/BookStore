@@ -55,7 +55,6 @@ namespace DataAccessLayer.Repository
             temp.Login = value.Login;
             temp.Password = value.Password;
             temp.Name = value.Name;
-            temp.LastName = value.LastName;
             temp.IsAdmin = value.IsAdmin;
             this._userContext.SaveChanges();
         }

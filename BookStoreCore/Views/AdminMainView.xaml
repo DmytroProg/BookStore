@@ -50,8 +50,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="searchTextBox" BorderThickness="0"
-                          FontSize="20"></TextBox>
+                    <TextBox x:Name="searchTextBox" 
+                             BorderThickness="0"
+                             FontSize="16"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <Image Width="20" Height="20" Source="/Images/search.png"
                         Grid.Column="1"></Image>
                 </Grid>
@@ -70,10 +72,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn FontSize="20" Header="Title" Width="auto" Binding="{Binding Path=Book.Name}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Title" Width="6*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="WrapWithOverflow"
+                                       Text="{Binding Path=Book.Name}"
+                                       FontSize="20"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn FontSize="20" Header="Count" Width="3*" Binding="{Binding Path=Count}"></DataGridTextColumn>
                 <DataGridCheckBoxColumn Header="In sale" Binding="{Binding Path=IsAvailable}"></DataGridCheckBoxColumn>
-                <DataGridTemplateColumn Width="10*">
+                <DataGridTemplateColumn Width="6*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"

@@ -23,7 +23,6 @@ namespace BookStoreCore
     - Add discounts
     - Buy books
     - Put aside books
-    - Search in admin main panel
     - create account
      */
 
@@ -49,20 +48,9 @@ namespace BookStoreCore
             base.OnStartup(e);
         }
 
-        private AdminMainViewModel CreateAdminMainViewModel()
-        {
-            return new AdminMainViewModel(this._navigationStore);
-        }
-
         private UserLoginViewModel CreateUserLoginViewModel()
         {
-            return new UserLoginViewModel(new NavigationService(this._navigationStore, CreateAdminMainViewModel),
-                new NavigationService(this._navigationStore, CreateUserMainViewModel));
-        }
-
-        private UserMainViewModel CreateUserMainViewModel()
-        {
-            return new UserMainViewModel(this._navigationStore);
+            return new UserLoginViewModel(this._navigationStore);
         }
     }
 }

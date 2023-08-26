@@ -22,8 +22,27 @@ namespace BookStoreCore.ViewModels
     {
         private BookDetailsService _bookDetailsService;
         private NavigationStore _navigationStore;
+        private string _searchText;
 
         public ObservableCollection<BookDetails> BookDetails { get; set; }
+
+        public string SearchText { 
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+                if (_searchText == string.Empty)
+                {
+                    UpdateBookCollection(this._bookDetailsService.GetAll());
+                }
+                else
+                {
+                    UpdateBookCollection(this._bookDetailsService.GetAll()
+                        .Where(x => x.Book.Name.Contains(_searchText)));
+                }
+            }
+        }
 
         public ICommand ShowAddBookView { get; }
         public ICommand UpdateBookView 

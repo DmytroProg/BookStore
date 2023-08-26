@@ -1,5 +1,6 @@
 ﻿using BookStoreCore.Commands;
 using BookStoreCore.Services;
+using BookStoreCore.Stores;
 using BusinessLogicLayer.Models;
 using BusinessLogicLayer.Services;
 using GalaSoft.MvvmLight.Command;
@@ -20,9 +21,11 @@ namespace BookStoreCore.ViewModels
     {
         private string _login = null!;
         private string _password = null!;
+        private string _name = null!;
 
         private NavigationService _adminNavigationService;
         private NavigationService _userNavigationService;
+        private NavigationService _createUserNavigationService;
         private UserService _userService { get; set; }
 
         public string Login {
@@ -44,42 +47,14 @@ namespace BookStoreCore.ViewModels
             }
         }
 
-        public UserLoginViewModel(NavigationService adminNavigationService ,
-            NavigationService userNavigationService)
+        public UserLoginViewModel(NavigationStore navigationStore)
         {
-            this._adminNavigationService = adminNavigationService;
-            this._userNavigationService = userNavigationService;
+            this._adminNavigationService = new NavigationService(navigationStore, () => new AdminMainViewModel(navigationStore));
+            this._userNavigationService = new NavigationService(navigationStore, () => new UserMainViewModel(navigationStore));
+            this._createUserNavigationService = new NavigationService(navigationStore, () => new CreateUserViewModel(this._userNavigationService));
+            this.CreateNewAccount = new NavigationCommand(this._createUserNavigationService);
             this._userService = new UserService(ConfigurationManager.ConnectionStrings["BookStore"].ConnectionString);
-            LogToAccaunt = new RelayCommand(() =>
-            {
-                if (!IsValid())
-                {
-                    MessageBox.Show("The input is incorrect. Fields must be filled and the password mush consist of at least 8 characters", 
-                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-                var tempUser = this._userService.GetAll()
-                .FirstOrDefault(x => x.Login == this.Login && x.Password == this.Password);
-                if(tempUser != null)
-                {
-                    User user = User.GetInstance();
-                    user.Name = tempUser.Name;
-                    user.LastName = tempUser.LastName;
-                    user.Login = tempUser.Login;
-                    user.Password = tempUser.Password;
-                    user.IsAdmin = tempUser.IsAdmin;
-
-                    if(user.IsAdmin)
-                        this._adminNavigationService.Navigate();
-                    else 
-                        this._userNavigationService.Navigate();
-                }
-                else
-                {
-                    MessageBox.Show("No user found with this login and password", "Warning",
-                        MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            });
+            
         }
 
         private bool IsValid()
@@ -93,6 +68,39 @@ namespace BookStoreCore.ViewModels
             return true;
         }
 
-        public ICommand LogToAccaunt { get; }
+        public ICommand CreateNewAccount { get; }
+
+        public ICommand LogToAccaunt
+        {
+            get => new RelayCommand(() =>
+            {
+                if (!IsValid())
+                {
+                    MessageBox.Show("The input is incorrect. Fields must be filled and the password mush consist of at least 8 characters",
+                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                var tempUser = this._userService.GetAll()
+                .FirstOrDefault(x => x.Login == this.Login && x.Password == this.Password);
+                if (tempUser != null)
+                {
+                    User user = User.GetInstance();
+                    user.Name = tempUser.Name;
+                    user.Login = tempUser.Login;
+                    user.Password = tempUser.Password;
+                    user.IsAdmin = tempUser.IsAdmin;
+
+                    if (user.IsAdmin)
+                        this._adminNavigationService.Navigate();
+                    else
+                        this._userNavigationService.Navigate();
+                }
+                else
+                {
+                    MessageBox.Show("No user found with this login and password", "Warning",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            });
+        }
     }
 }
