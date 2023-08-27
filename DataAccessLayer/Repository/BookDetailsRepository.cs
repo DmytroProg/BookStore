@@ -77,5 +77,39 @@ namespace DataAccessLayer.Repository
 
             this._bookDetailsContext.SaveChanges();
         }
+
+        public void BuyBook(OrderInfo order)
+        {
+            if (order is null)
+                throw new ArgumentNullException(nameof(order));
+
+            var book = order.Book.Id;
+            order.Book = this._bookDetailsContext.Books
+                .Include(x => x.Author)
+                .Include(x => x.Genres)
+                .Include(x => x.Discount)
+                .First(x => x.Id == book);
+
+            //var author = order.Book.Author.Id;
+            //order.Book.Author = this._bookDetailsContext.Authors.First(x => x.Id == author);
+
+            //var genres = order.Book.Genres.Select(x => x.Id);
+
+            //var tempGenres = this._bookDetailsContext.Genres.Where(x => genres.Contains(x.Id));
+            //order.Book.Genres = new List<GenreInfo>(tempGenres);
+
+            this._bookDetailsContext.Orders.Add(order);
+            this._bookDetailsContext.SaveChanges();
+        }
+
+        public IEnumerable<OrderInfo> GetOrders()
+        {
+            return this._bookDetailsContext.Orders
+                .Include(x => x.Book)
+                .ThenInclude(x => x.Author)
+                .Include(x => x.Book.Genres)
+                .Include(x => x.Book.Discount)
+                .Include(x => x.User);
+        }
     }
 }

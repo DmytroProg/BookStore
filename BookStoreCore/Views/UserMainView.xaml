@@ -12,6 +12,13 @@
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
+        <Style x:Key="SavedBooksItem" TargetType="TextBlock">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="BlueViolet"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="Item" TargetType="Border">
                 <Style.Triggers>
                     <EventTrigger RoutedEvent="MouseEnter">
@@ -40,11 +47,38 @@
               DockPanel.Dock="Top"
               MinHeight="60">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Style="{StaticResource Header}">BookStore</TextBlock>
+
+            <TextBlock Grid.Column="2"
+                       FontSize="20"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Saved books"
+                       Style="{StaticResource SavedBooksItem}"
+                       MouseUp="TextBlock_MouseUp">
+            </TextBlock>
+
+            <Popup x:Name="savedBooksPopup"
+                   Placement="Bottom"
+                   StaysOpen="False"
+                   PopupAnimation="Scroll">
+                <ListBox ItemsSource="{Binding SavedBooks}"
+                         MinWidth="100" 
+                         MinHeight="150" 
+                         Background="White">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Book.Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Popup>
         </Grid>
         <Grid Background="Azure"
             DockPanel.Dock="Bottom">

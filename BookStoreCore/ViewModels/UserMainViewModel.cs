@@ -22,6 +22,7 @@ namespace BookStoreCore.ViewModels
         private NavigationStore _navigationStore = null!;
 
         public ObservableCollection<BookDetails> BookDetails { get; set; } = null!;
+        public ObservableCollection<Order> SavedBooks { get; set; } = null!;
 
         public UserMainViewModel(NavigationStore navigationStore)
         {
@@ -30,6 +31,8 @@ namespace BookStoreCore.ViewModels
             this.BookDetails = new ObservableCollection<BookDetails>(
                 this._bookDetailsService.GetAll().Where(x => x.IsAvailable && x.Count > 0));
             this._navigationStore = navigationStore;
+            this.SavedBooks = new ObservableCollection<Order>(this._bookDetailsService.GetOrders()
+                .Where(x => !x.IsPaid));
 
             this.BookDetails.Add(new BookDetails()
             {

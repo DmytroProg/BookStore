@@ -73,5 +73,6 @@ namespace BusinessLogicLayer.Services
         {
             return TranslateToUserModel(this._userRepository.FindOne(id));
         }
+        
     }
 }

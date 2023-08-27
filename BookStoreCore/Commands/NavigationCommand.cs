@@ -16,16 +16,16 @@ namespace BookStoreCore.Commands
     {
         private readonly NavigationService _navigationService;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public NavigationCommand(NavigationService navigationService)
         {
             this._navigationService = navigationService;
         }
 
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object? parameter) => true;
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             this._navigationService.Navigate();
         }

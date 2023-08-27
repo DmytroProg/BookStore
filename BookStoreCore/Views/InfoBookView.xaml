@@ -113,7 +113,21 @@
             <TextBlock x:Name="authorViewText" 
                        Grid.Row="2" 
                        TextAlignment="Center"
-                       Text="{Binding CurrentBook.Price, StringFormat={}{0:c}}" FontSize="20"></TextBlock>
+                       Text="{Binding CurrentBook.PriceWithDiscount, StringFormat={}{0:c}}" FontSize="20"></TextBlock>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="putOffBook"
+                        Margin="30, 10"
+                        Command="{Binding SaveBook}">Save</Button>
+                <Button x:Name="buyBook"
+                        Grid.Column="1"
+                        Margin="30, 10">Buy</Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

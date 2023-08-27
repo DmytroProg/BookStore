@@ -84,5 +84,72 @@ namespace BusinessLogicLayer.Services
         {
             return TranslateToBookDetailsModel(this._bookDetailsRepository.FindOne(id));
         }
+
+        public void BuyBook(Book book, bool isPaid)
+        {
+            if (book is null)
+                throw new ArgumentNullException(nameof(book));
+
+            var user = User.GetInstance();
+            OrderInfo order = new OrderInfo()
+            {
+                User = new UserInfo()
+                {
+                    Name = user.Name,
+                    Login = user.Login,
+                    Password = user.Password,
+                    IsAdmin = user.IsAdmin,
+                    Id = user.Id
+                },
+                Book = new BookInfo()
+                {
+                    Id = book.Id,
+                    Name = book.Name,
+                    AuthorId = book.Author.Id,
+                    Author = new AuthorInfo()
+                    {
+                        Id = book.Author.Id,
+                        Name = book.Author.Name,
+                        LastName = book.Author.LastName,
+                        BornYear = book.Author.BornYear
+                    },
+                    Genres = new List<GenreInfo>(book.Genres.Select(x => new GenreInfo()
+                    {
+                        Id = x.Id,
+                        GenreName = x.GenreName,
+                    })),
+                    Publisher = book.Publisher,
+                    PageCount = book.PageCount,
+                    PublishYear = book.PublishYear,
+                    Value = book.Value,
+                    Price = book.Price,
+                    Part = book.Part,
+                    Image = book.Image,
+                    Discount = book.Discount is null ? null : new DiscountInfo()
+                    {
+                        Id = book.Discount.Id,
+                        Name = book.Discount.Name,
+                        Percents = book.Discount.Percents
+                    }
+                },
+                IsPaid = isPaid,
+                OrderDate = DateTime.Now
+            };
+
+            (this._bookDetailsRepository as BookDetailsRepository)?.BuyBook(order);
+        }
+
+        public IEnumerable<Order>? GetOrders()
+        {
+            return (this._bookDetailsRepository as BookDetailsRepository)?.GetOrders()
+                .Where(x => x.User.Login == User.GetInstance().Login)
+                .Select(x => new Order
+                {
+                    Id = x.Id,
+                    IsPaid = x.IsPaid,
+                    OrderDate = x.OrderDate,
+                    Book = this._bookService.FindOne(x.Book.Id)
+                });
+        }
     }
 }
