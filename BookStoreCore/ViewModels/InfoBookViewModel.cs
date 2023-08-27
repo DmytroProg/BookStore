@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BookStoreCore.ViewModels
@@ -36,8 +37,16 @@ namespace BookStoreCore.ViewModels
         public ICommand SaveBook {
             get => new RelayCommand(() =>
             {
-                if(this._bookDetailsService.GetOrders()?.Count(x => x.Book.Id == this.CurrentBook.Id) == 0)
-                    this._bookDetailsService.BuyBook(this.CurrentBook, false);
+                try
+                {
+                    if (this._bookDetailsService.GetOrders()?.Count(x => x.Book.Id == this.CurrentBook.Id) == 0)
+                        this._bookDetailsService.BuyBook(this.CurrentBook, false);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot save this book. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             });
         }
     }

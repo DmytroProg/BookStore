@@ -124,10 +124,20 @@ namespace BookStoreCore.ViewModels
                 if(MessageBox.Show("Are you sure you want to delete this discount?", "Question",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    this._discountService.Remove(d);
-                    this.Discounts.Remove(d);
-
-                    UpdateCollection();
+                    try
+                    {
+                        this._discountService.Remove(d);
+                        this.Discounts.Remove(d);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Cannot remove a discount. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    finally
+                    {
+                        UpdateCollection();
+                    }
                 }
             });
         }
@@ -165,15 +175,23 @@ namespace BookStoreCore.ViewModels
                 Percents = this.Persent,
                 Books = new List<Book>(this.BookDetails.Where(x => x.HasDiscount).Select(x => x.Book)),
             };
-            this._discountService.Add(discount);
-            discount.Id = this._discountService.GetAll().Last().Id;
-            foreach(var item in this.BookDetails.Where(x => x.HasDiscount))
+            try
             {
-                item.Book.Discount = discount;
-                this._bookService.Update(item.Book);
+                this._discountService.Add(discount);
+                discount.Id = this._discountService.GetAll().Last().Id;
+                foreach (var item in this.BookDetails.Where(x => x.HasDiscount))
+                {
+                    item.Book.Discount = discount;
+                    this._bookService.Update(item.Book);
+                }
+                MessageBox.Show("Discount added!", "Message",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            MessageBox.Show("Discount added!", "Message",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot add a discount. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
     }

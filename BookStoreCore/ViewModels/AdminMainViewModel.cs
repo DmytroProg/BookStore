@@ -65,8 +65,16 @@ namespace BookStoreCore.ViewModels
                         "Message", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (dialog == MessageBoxResult.Yes)
                     {
-                        this._bookDetailsService.Remove(book);
-                        UpdateBookCollection(this._bookDetailsService.GetAll());
+                        try
+                        {
+                            this._bookDetailsService.Remove(book);
+                            UpdateBookCollection(this._bookDetailsService.GetAll());
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("An error accured while deleting a book. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 });
         }
@@ -98,11 +106,20 @@ namespace BookStoreCore.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                foreach (var item in this.BookDetails)
+                try
                 {
-                    this._bookDetailsService.Update(item);
+                    foreach (var item in this.BookDetails)
+                    {
+                        this._bookDetailsService.Update(item);
+                    }
+
+                    MessageBox.Show("Saved!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                MessageBox.Show("Saved!", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                catch (Exception)
+                {
+                    MessageBox.Show("An error accured while updating books. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             });
         }
 

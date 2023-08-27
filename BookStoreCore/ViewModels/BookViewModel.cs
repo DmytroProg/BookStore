@@ -204,16 +204,32 @@ namespace BookStoreCore.ViewModels
 
                 if (this.updateBook != null)
                 {
-                    bookDetails.Id = this.updateBook.Id;
-                    bookDetails.Book.Id = this.updateBook.Book.Id;
-                    bookDetails.Book.Author.Id = this.updateBook.Book.Author.Id;
-                    bookDetails.Count = updateBook.Count;
-                    bookDetails.IsAvailable = updateBook.IsAvailable;
-                    this._bookDetailsService.Update(bookDetails);
+                    try
+                    {
+                        bookDetails.Id = this.updateBook.Id;
+                        bookDetails.Book.Id = this.updateBook.Book.Id;
+                        bookDetails.Book.Author.Id = this.updateBook.Book.Author.Id;
+                        bookDetails.Count = updateBook.Count;
+                        bookDetails.IsAvailable = updateBook.IsAvailable;
+                        this._bookDetailsService.Update(bookDetails);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Cannot update a book. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
                 else
                 {
-                    this._bookDetailsService.Add(bookDetails);
+                    try
+                    {
+                        this._bookDetailsService.Add(bookDetails);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Cannot add a book. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
 
                 GoBackToAdminMain?.Execute(null);

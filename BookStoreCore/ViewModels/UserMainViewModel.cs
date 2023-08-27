@@ -33,18 +33,6 @@ namespace BookStoreCore.ViewModels
             this._navigationStore = navigationStore;
             this.SavedBooks = new ObservableCollection<Order>(this._bookDetailsService.GetOrders()
                 .Where(x => !x.IsPaid));
-
-            this.BookDetails.Add(new BookDetails()
-            {
-                Count = 100,
-                IsAvailable = true,
-                Book = new Book()
-                {
-                    Name = "Harry Potter",
-                    Price = 9.99m,
-                    Image = "https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg?w=914&q=70&fm=jpg"
-                }
-            });
         }
 
         public ICommand ChooseBook

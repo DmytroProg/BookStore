@@ -89,13 +89,19 @@ namespace BookStoreCore.ViewModels
                     return;
                 }
 
-                User user = User.GetInstance();
-                user.Name = this.Name;
-                user.Login = this.Login;
-                user.Password = this.Password;
-                user.IsAdmin = false;
-
-                this._userService.Add(user);
+                try { 
+                    User user = User.GetInstance();
+                    user.Name = this.Name;
+                    user.Login = this.Login;
+                    user.Password = this.Password;
+                    user.IsAdmin = false;
+                    this._userService.Add(user);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot add a new user. Try restart a program and delete it again",
+                                "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
 
                 this._userNavigationService.Navigate();
             });
