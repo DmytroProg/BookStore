@@ -52,6 +52,11 @@ namespace BookStoreCore.ViewModels
             get => new RelayCommand<BookDetails>(book => { new NavigationService(this._navigationStore, () => CreateInfoBookViewModel(book.Book)).Navigate(); });
         }
 
+        public ICommand ChooseSavedBook
+        {
+            get => new RelayCommand<Order>(order => { new NavigationService(this._navigationStore, () => CreateInfoBookViewModel(order.Book)).Navigate(); });
+        }
+
         public InfoBookViewModel CreateInfoBookViewModel(Book book)
         {
             return new InfoBookViewModel(book, new NavigationService(this._navigationStore, CreateUserMainViewModel));

@@ -90,14 +90,6 @@ namespace DataAccessLayer.Repository
                 .Include(x => x.Discount)
                 .First(x => x.Id == book);
 
-            //var author = order.Book.Author.Id;
-            //order.Book.Author = this._bookDetailsContext.Authors.First(x => x.Id == author);
-
-            //var genres = order.Book.Genres.Select(x => x.Id);
-
-            //var tempGenres = this._bookDetailsContext.Genres.Where(x => genres.Contains(x.Id));
-            //order.Book.Genres = new List<GenreInfo>(tempGenres);
-
             this._bookDetailsContext.Orders.Add(order);
             this._bookDetailsContext.SaveChanges();
         }

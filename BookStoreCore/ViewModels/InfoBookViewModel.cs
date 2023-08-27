@@ -36,7 +36,8 @@ namespace BookStoreCore.ViewModels
         public ICommand SaveBook {
             get => new RelayCommand(() =>
             {
-                this._bookDetailsService.BuyBook(this.CurrentBook, false);
+                if(this._bookDetailsService.GetOrders()?.Count(x => x.Book.Id == this.CurrentBook.Id) == 0)
+                    this._bookDetailsService.BuyBook(this.CurrentBook, false);
             });
         }
     }

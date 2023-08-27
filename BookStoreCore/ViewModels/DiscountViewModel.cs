@@ -55,15 +55,10 @@ namespace BookStoreCore.ViewModels
                 OnPropertyChanged(nameof(SelectedGenre));
                 if(value == "No specific genre")
                 {
-                    this.BookDetails.Clear();
-                    foreach (var item in this._bookDetailsService.GetAll()
-                        .Where(x => x.IsAvailable && x.Count > 0))
-                    {
-                        this.BookDetails.Add(item);
-                    }
+                    UpdateCollection();
                     return;
                 }
-                UpdateCollection();
+                UpdateCollectionByGenre();
             }
         }
 
@@ -96,12 +91,22 @@ namespace BookStoreCore.ViewModels
         public Visibility IsDiscountTable => 
             IsBooksTable == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
 
-        private void UpdateCollection()
+        private void UpdateCollectionByGenre()
         {
             this.BookDetails.Clear();
             foreach(var item in this._bookDetailsService.GetAll()
                 .Where(x => x.IsAvailable && x.Count > 0 &&
             x.Book.Genres.Select(y => y.GenreName).Contains(_selectedGenre)))
+            {
+                this.BookDetails.Add(item);
+            }
+        }
+
+        private void UpdateCollection()
+        {
+            this.BookDetails.Clear();
+            foreach (var item in this._bookDetailsService.GetAll()
+                .Where(x => x.IsAvailable && x.Count > 0))
             {
                 this.BookDetails.Add(item);
             }
@@ -121,6 +126,8 @@ namespace BookStoreCore.ViewModels
                 {
                     this._discountService.Remove(d);
                     this.Discounts.Remove(d);
+
+                    UpdateCollection();
                 }
             });
         }

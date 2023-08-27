@@ -55,30 +55,41 @@
 
             <TextBlock Style="{StaticResource Header}">BookStore</TextBlock>
 
-            <TextBlock Grid.Column="2"
-                       FontSize="20"
-                       TextAlignment="Center"
-                       VerticalAlignment="Center"
-                       Text="Saved books"
-                       Style="{StaticResource SavedBooksItem}"
-                       MouseUp="TextBlock_MouseUp">
-            </TextBlock>
+            <Grid Grid.Column="2">
+                <TextBlock
+                    FontSize="20"
+                    TextAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="Saved books"
+                    Style="{StaticResource SavedBooksItem}"
+                    MouseUp="TextBlock_MouseUp">
+                </TextBlock>
 
-            <Popup x:Name="savedBooksPopup"
-                   Placement="Bottom"
-                   StaysOpen="False"
-                   PopupAnimation="Scroll">
-                <ListBox ItemsSource="{Binding SavedBooks}"
-                         MinWidth="100" 
-                         MinHeight="150" 
-                         Background="White">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Book.Name}"></TextBlock>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Popup>
+                <Popup x:Name="savedBooksPopup"
+                       Placement="Bottom"
+                       StaysOpen="False"
+                       PopupAnimation="Scroll">
+                    <ListBox ItemsSource="{Binding SavedBooks}"
+                             MinWidth="100" 
+                             MinHeight="150" 
+                             Background="White">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <ListBoxItem>
+                                    <TextBlock Text="{Binding Book.Name}"
+                               FontSize="18">
+                                    </TextBlock>
+                                    <ListBoxItem.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                      Command="{Binding Path=DataContext.ChooseSavedBook, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}" 
+                                      CommandParameter="{Binding .}"/>
+                                    </ListBoxItem.InputBindings>
+                                </ListBoxItem>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Popup>
+            </Grid>
         </Grid>
         <Grid Background="Azure"
             DockPanel.Dock="Bottom">

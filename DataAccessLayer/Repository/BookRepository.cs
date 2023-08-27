@@ -69,6 +69,7 @@ namespace DataAccessLayer.Repository
             var tempBook = this._bookStoreContext.Books
                 .Include(x => x.Author)
                 .Include(x => x.Genres)
+                .Include(x => x.Discount)
                 .First(x => x.Id == value.Id);
 
             if (tempBook is null)
@@ -95,12 +96,7 @@ namespace DataAccessLayer.Repository
 
             if(value.Discount != null)
             {
-                tempBook.Discount = new DiscountInfo()
-                {
-                    Id = value.Discount.Id,
-                    Name = value.Discount.Name,
-                    Percents = value.Discount.Percents
-                };
+                tempBook.Discount = this._bookStoreContext.Discounts.Find(value.Discount.Id);
             }
 
             this._bookStoreContext.Books.Update(tempBook);
