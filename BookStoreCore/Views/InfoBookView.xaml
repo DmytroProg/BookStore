@@ -123,10 +123,13 @@
 
                 <Button x:Name="putOffBook"
                         Margin="30, 10"
+                        IsEnabled="{Binding CanSave}"
                         Command="{Binding SaveBook}">Save</Button>
                 <Button x:Name="buyBook"
                         Grid.Column="1"
-                        Margin="30, 10">Buy</Button>
+                        Margin="30, 10"
+                        IsEnabled="{Binding CanBuy}"
+                        Command="{Binding BuyBook}">Buy</Button>
             </Grid>
         </Grid>
     </Grid>

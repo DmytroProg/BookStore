@@ -28,5 +28,10 @@ namespace BookStoreCore.Views
         {
             savedBooksPopup.IsOpen = true;
         }
+
+        private void myBooksTextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            boughtBooksPopup.IsOpen = true;
+        }
     }
 }
